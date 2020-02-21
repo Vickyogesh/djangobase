@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<!--[if IE 9]>         <html class="ie9 no-focus" lang="en"> <![endif]-->
+<!--[if gt IE 9]><!--> <html class="no-focus" lang="en"> <!--<![endif]-->
+    <head>
+        {% load staticfiles %}
+        <meta charset="utf-8">
+        <style>
+        table, th, td {
+            border: 0px solid black;
+        }
+        footer {
+            position: relative;
+            float: right;
+            text-align: right;
+            bottom:0;
+        }
+        .paginator{
+          float: right;
+        }
+        </style>
+        <title>HLX Studios Template</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0">
+        <link rel="shortcut icon" href="{% static '../Main/static/favicon.ico' %}" />
+        <!-- Stylesheets -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
+        <script type="text/javascript" src="{% static '../static/js/core/jquery.min.js' %}"></script>
+        <link rel="stylesheet" href="{% static '../static/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static '../static/css/oneui.css' %}">
+        <link href="{% static '../static/fonts/Simple-Line-Icons.ttf' %}" rel='stylesheet'>
+        <link href="{% static '../static/fonts/fontawesome-webfont.ttf' %}" rel='stylesheet'>
+        <link rel="stylesheet" href="{% static '../static/css/amethyst.min.css' %}">
+        <link rel="stylesheet" href="{% static '../static/css/city.min.css' %}">
+        <link rel="stylesheet" href="{% static '../static/css/flat.min.css' %}">
+        <link rel="stylesheet" href="{% static '../static/css/modern.min.css' %}">
+        <link rel="stylesheet" href="{% static '../static/css/smooth.min.css' %}">
+        <link rel="shortcut icon" href="{% static '../static/icons/favicon.ico' %}" />
+        <!-- SweetAlerts -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
+        <!-- END Stylesheets -->
+
+        <style>
+            .alert {
+                padding: 20px;
+                background-color: #FFFFFF;
+                color: black;
+            }
+        </style>
+        <!-- END Stylesheets -->
+    </head>
+    <body>
+        {% csrf_token %}
+        <div id="page-container" class="sidebar-l sidebar-o side-scroll header-navbar-fixed">
+
+            <!-- Side Overlay-->
+            <aside id="side-overlay">
+                <!-- Side Overlay Scroll Container -->
+                <div id="side-overlay-scroll">
+                    <!-- Side Header -->
+                    <div class="side-header side-content">
+                        <!-- Layout API, functionality initialized in App() -> uiLayoutApi() -->
+                        <button class="btn btn-default pull-right" type="button" data-toggle="layout" data-action="side_overlay_close">
+                            <i class="fa fa-times"></i>
+                        </button>
+                        <span>
+                            <font face="tahoma"><span class="font-w600 push-10-l">{{ username }}</span></font>
+                        </span>
+                    </div>
+                    <!-- END Side Header -->
+
+                    <!-- Side Content -->
+                    <div class="side-content remove-padding-t">
+                        <!-- Side Overlay Tabs -->
+                        <div class="block pull-r-l border-t">
+
+                        </div>
+                        <!-- END Side Overlay Tabs -->
+
+                        {% if notifications|length > 0 %}
+                            <ul class="list list-activity">
+                            {% for t in notifications %}
+                                <li>
+                                    <i class="{{t.ui_element}}"></i>
+                                    <div><small class="text-muted">{{t.Date}}</small> - <a href="javascript:void(0)">{{t.Type}}</a></div>
+                                    <div class="font-w600">{{t.Message}}</div>
+                                </li>
+                            {% endfor %}
+                            </ul>
+
+                        {% else %}
+                            <p>No new notifications</p>
+                        {% endif %}
+                    </div>
+                    <!-- END Side Content -->
+                </div>
+                <!-- END Side Overlay Scroll Container -->
+            </aside>
+            <!-- END Side Overlay -->
+
+            <!-- left Sidebar -->
+            <nav id="sidebar">
+                <!-- Sidebar Scroll Container -->
+                <div id="sidebar-scroll">
+                    <!-- Sidebar Content -->
+                    <!-- Adding .sidebar-mini-hide to an element will hide it when the sidebar is in mini mode -->
+                    <div class="sidebar-content">
+                        <!-- Side Header -->
+                        <div class="side-header side-content bg-white-op">
+                            <!-- Layout API, functionality initialized in App() -> uiLayoutApi() -->
+
+                            <!-- Themes functionality initialized in App() -> uiHandleTheme() -->
+                            <div class="btn-group pull-right">
+
+                            </div>
+
+                            <!-- Pic here -->
+                            <img src="{% static '../static/img/djangobaseapp.png' %}" align='center' width=200 height=140 class="logo-holder"/>
+                        </div>
+                        <!-- END Side Header -->
+
+                        <!-- Side Content -->
+                        <div class="side-content">
+                            <ul class="nav-main">
+                                <li class="open">
+                                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-user"></i><span class="sidebar-mini-hide">Account</span></a>
+                                    <ul>
+                                        <li>
+                                            <a href="../account_dashboard/">Dashboard</a>
+                                        </li>
+                                        <li>
+                                            <a href="../account_invoices/">Invoices</a>
+                                        </li>
+                                        <li>
+                                            <a href="../account_settings/">Settings</a>
+                                        </li>
+                                        <li>
+                                            <a href="../logout/">Log out</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="open">
+                                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-speedometer"></i><span class="sidebar-mini-hide">Marketplaces</span></a>
+                                    <ul>
+                                        <li class="open">
+                                            <a class="nav-submenu" data-toggle="nav-submenu">Amazon</a>
+                                            <ul>
+                                                <li>
+                                                    <a href="../marketplace_amazon/">Cases</a>
+                                                </li>
+                                                <li>
+                                                    <a href="../marketplace_amazon/">Other 1</a>
+                                                </li>
+                                                <li>
+                                                    <a href="../marketplace_amazon/">Settings</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="open">
+                                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="glyphicon glyphicon-plane"></i><span class="sidebar-mini-hide">Couriers</span></a>
+                                    <ul>
+                                        <li>
+                                            <a href="../courier_fedex/">FedEx</a>
+                                        </li>
+                                        <li>
+                                            <a href="../courier_ups/">UPS</a>
+                                        </li>
+                                        <li>
+                                            <a href="../courier_dhl/">DHL</a>
+                                        </li>
+                                        <li>
+                                            <a href="../courier_usps/">USPS</a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <!-- END Side Content -->
+                    </div>
+                    <!-- Sidebar Content -->
+                </div>
+                <!-- END Sidebar Scroll Container -->
+            </nav>
+            <!-- END Sidebar -->
+
+            <!-- Header -->
+            <header id="header-navbar" class="content-mini content-mini-full">
+                <!-- Header Navigation Right -->
+                <ul class="nav-header pull-right">
+                    <li>
+                        <div class="btn-group">
+                            <button class="btn btn-default btn-image dropdown-toggle" data-toggle="dropdown" type="button">
+                                <i class="si si-settings pull-left"></i>
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li class="dropdown-header">Account</li>
+                                <li>
+                                    <a tabindex="-1" href="../account_dashboard/">
+                                        <i class="glyphicon glyphicon-th pull-right"></i>Dashboard
+                                    </a>
+                                </li>
+                                <li>
+                                    <a tabindex="-1" href="../invoice/">
+                                        <i class="glyphicon glyphicon-list-alt pull-right"></i>
+                                        <span class="badge badge-success pull-right"></span>Invoices
+                                    </a>
+                                </li>
+                                <li>
+                                    <a tabindex="-1" href="../invoice/">
+                                        <i class="si si-settings pull-right"></i>
+                                        <span class="badge badge-success pull-right"></span>Settings
+                                    </a>
+                                </li>
+                                <li>
+                                    <a tabindex="-1" href="../invoice/">
+                                        <i class="si si-settings pull-right"></i>
+                                        <span class="badge badge-success pull-right"></span>Notifications
+                                    </a>
+                                </li>
+
+                                <li class="divider"></li>
+                                <li class="dropdown-header">Actions</li>
+
+                                <li>
+                                    <a tabindex="-1" href="../logout">
+                                        <i class="si si-logout pull-right"></i>Log out
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <!-- Layout API, functionality initialized in App() -> uiLayoutApi() -->
+                        <button class="btn btn-default" data-toggle="layout" data-action="side_overlay_toggle" type="button">
+                            <i class="fa fa-tasks"></i>
+                        </button>
+                    </li>
+                </ul>
+                <!-- END Header Navigation Right -->
+            </header>
+            <!-- END Header -->
+
+            <!-- Main Container -->
+
+            <main id="main-container">
+               <div class="content bg-image overflow-hidden" style="background-image:url({% static '../static/img/banner.png' %}");>
+                   <div class="push-50-t push-15">
+                        <h1 class="h2 text-white animated zoomIn"><font color="white"> HLX Studios Template</font></h1>
+                        <h2 class="h5 text-white-op animated zoomIn"><font color="white"> Welcome {{username}}</font></h2>
+                   </div>
+               </div>
+
+               <div class="content bg-white border-b">
+                    {% block content %}
+                    {% endblock %}
+               </div>
+               <!-- Page Content -->
+               <div class="content" style="bottom:0 ">
+                    <footer>
+                          <span class="right">Product of <a href="http://hlx.co" target="new" style="color:blue;">HLX, LLC</a> | Email <a href="mailto:info@hlx.co" target="new" style="color:blue;">info@hlx.co</a></span>
+                    </footer>
+                    <!-- End Page Content -->
+                    <!-- END Footer -->
+                </div>
+            </main>
+        <!-- END Page Container -->
+
+        <script type="text/javascript" src="{% static '../static/js/app.js' %}"></script>
+        <script type="text/javascript" src="{% static '../static/js/core/jquery.appear.min.js' %}"></script>
+        <script type="text/javascript" src="{% static '../static/js/core/jquery.countTo.min.js' %}"></script>
+        <script type="text/javascript" src="{% static '../static/js/core/jquery.placeholder.min.js' %}"></script>
+        <script type="text/javascript" src="{% static '../static/js/core/jquery.scrollLock.min.js' %}"></script>
+        <script type="text/javascript" src="{% static '../static/js/core/jquery.slimscroll.min.js' %}"></script>
+        <script type="text/javascript" src="{% static '../static/js/core/js.cookie.min.js' %}"></script>
+        <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    </body>
+</html>
+

@@ -1,0 +1,20 @@
+{	
+	"software_data":{
+		"version":"0.01"
+		, "name":"DjangoBaseProject"
+		, "log":"log_django_base_project"
+	}
+
+	, "pgsql":{"host":"45.79.184.148"
+		, "name":"django_base_app"
+		, "user":"django_user"
+		, "pass":"abcd"
+	}
+	, "amazonsqs":{"access":""
+		, "secret":""
+	}
+
+	, "slackbot":{"token":""
+		, "log":"#applog"
+	}
+}

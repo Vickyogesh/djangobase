@@ -1,0 +1,58 @@
+{% extends "_base_page.html" %}
+{% block content %}
+<form id='content' action="" method="POST">
+    <div class="row push">
+        <div class="col-lg-8 col-xl-5">
+            <div class="form-group">
+                <label for="start-date">Start date</label>
+                <input type="date" class="js-datepicker form-control js-datepicker-enabled" id="start-date" name="start-date" data-week-start="1" data-autoclose="true" data-today-highlight="true" data-date-format="mm/dd/yy" placeholder="mm/dd/yy">
+            </div>
+            <div class="form-group">
+                <label for="end-date">End date</label>
+                <input type="date" class="js-datepicker form-control js-datepicker-enabled" id="end-date" name="end-date" data-week-start="1" data-autoclose="true" data-today-highlight="true" data-date-format="mm/dd/yy" placeholder="mm/dd/yy">
+            </div>
+            <div class="form-group">
+                <label for="asin">ASIN List</label>
+                <textarea class="form-control" id="asin" name="asin" rows="4" placeholder="ASIN List"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="sku">SKU List</label>
+                <textarea class="form-control" id="sku" name="sku" rows="4" placeholder="SKU List"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="report">Report List</label>
+                <select class="form-control" id="report" name="report" size="5" multiple="">
+                    <option value="1">Option #1</option>
+                    <option value="2">Option #2</option>
+                    <option value="3">Option #3</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="report">Purchaser</label>
+                <select class="form-control" id="purchaser" name="purchaser" size="5" multiple="">
+                    <option value="1">Option #1</option>
+                    <option value="2">Option #2</option>
+                    <option value="3">Option #3</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="company">Company</label>
+                <select class="form-control" id="company" name="company" size="5" multiple="">
+                    <option value="1">Option #1</option>
+                    <option value="2">Option #2</option>
+                    <option value="3">Option #3</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="season">Season</label>
+                <select class="form-control" id="season" name="season" size="5" multiple="">
+                    <option value="1">Option #1</option>
+                    <option value="2">Option #2</option>
+                    <option value="3">Option #3</option>
+                </select>
+            </div>
+            <button type="button" class="btn btn-primary">Send</button>
+        </div>
+    </div>
+</form>
+{% endblock %}
