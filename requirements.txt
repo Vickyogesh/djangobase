@@ -49,7 +49,7 @@ sip==4.19.7
 six==1.11.0
 suds-jurko==0.6
 sweetify==1.0.3
-urllib3==1.22
+urllib3==1.24.2
 vine==1.1.4
 wadllib==1.3.2
 whitenoise==3.3.1
